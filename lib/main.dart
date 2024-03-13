@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'NavBar.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: SplashPage(duration:3, goToPage: const MyApp(),)
+  runApp(const MaterialApp(
+    home: SplashPage(goToPage: MyApp(),)
   )
   );
 }
@@ -20,14 +20,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+  const MyHomePage({super.key, });
+  final String title = 'Today News';
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -39,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       drawer: const NavBar(),
       appBar: AppBar(
+        centerTitle: true,
         title: Text(widget.title),
       ),
       body: const Center(
@@ -49,10 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class SplashPage extends StatelessWidget {
   //const SplashPage({super.key});
-  int duration = 0;
-  Widget goToPage;
+  final int duration = 3;
+  final Widget goToPage;
 
-  SplashPage({super.key, required this.goToPage,required this.duration});
+  const SplashPage({super.key, required this.goToPage,});
 
   @override
   Widget build(BuildContext context) {

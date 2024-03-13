@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'about.dart';
+import 'main.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
@@ -24,8 +26,8 @@ class NavBar extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: const Text('Home'),
-            onTap: ()=>Null,
+            title: const Text('Today News'),
+            onTap: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MyHomePage()))
           ),
           ListTile(
             title: const Text('List'),
@@ -45,14 +47,9 @@ class NavBar extends StatelessWidget {
             onTap: ()=>Null,
           ),
           ListTile(
-            leading: const Icon(Icons.notifications),
-            title: const Text('Today Notification'),
-            onTap: ()=>Null,
-          ),
-          ListTile(
             leading: const Icon(Icons.people),
             title: const Text('About Us'),
-            onTap: ()=>Null,
+            onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context) => About())),
           ),
         ],
       ),
