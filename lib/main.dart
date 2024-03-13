@@ -3,7 +3,7 @@ import 'NavBar.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: SplashPage(duration:3, goToPage: MyApp(),)
+    home: SplashPage(duration:3, goToPage: const MyApp(),)
   )
   );
 }
@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
+      drawer: const NavBar(),
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -52,38 +52,27 @@ class SplashPage extends StatelessWidget {
   int duration = 0;
   Widget goToPage;
 
-  SplashPage({required this.goToPage,required this.duration});
+  SplashPage({super.key, required this.goToPage,required this.duration});
 
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(Duration(seconds: this.duration),(){
+    Future.delayed(Duration(seconds: duration),(){
       Navigator.push(
-        context, MaterialPageRoute(builder: (context) => this.goToPage)
+        context, MaterialPageRoute(builder: (context) => goToPage)
       );
     }
     );
     return Scaffold(
-      body: Container(
-        color: Colors.red,
-        child: const Center(
-          child: Icon(Icons.favorite, color: Colors.black,size: 100,)
-        ),
-      ),
+      
+      body: Image.asset('images/swimming_nathan.png',
+      alignment: Alignment.center,
+      fit: BoxFit.cover,
+      height: double.infinity,
+      width: double.infinity,
+
+      )
     );
   }
 }
 
-class WelcomePage extends StatelessWidget {
-  //const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        child: Text('Welcome Page'),
-      ),
-    );
-  }
-}
