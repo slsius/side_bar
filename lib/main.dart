@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'NavBar.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(
+    home: SplashPage(duration:3, goToPage: MyApp(),)
+  )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -39,6 +42,47 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: const Center(
+      ),
+    );
+  }
+}
+
+class SplashPage extends StatelessWidget {
+  //const SplashPage({super.key});
+  int duration = 0;
+  Widget goToPage;
+
+  SplashPage({required this.goToPage,required this.duration});
+
+  @override
+  Widget build(BuildContext context) {
+
+    Future.delayed(Duration(seconds: this.duration),(){
+      Navigator.push(
+        context, MaterialPageRoute(builder: (context) => this.goToPage)
+      );
+    }
+    );
+    return Scaffold(
+      body: Container(
+        color: Colors.red,
+        child: const Center(
+          child: Icon(Icons.favorite, color: Colors.black,size: 100,)
+        ),
+      ),
+    );
+  }
+}
+
+class WelcomePage extends StatelessWidget {
+  //const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: Text('Welcome Page'),
       ),
     );
   }
